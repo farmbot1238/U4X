@@ -136,14 +136,14 @@
     .hero-text {
       flex: 1.2;
     }
-    .badge {
-      display: inline-block;
-      background: #eef2ff;
-      padding: 6px 14px;
-      border-radius: 40px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #2563eb;
+    .comp-badge {
+      background: linear-gradient(95deg, #fef9e3, #fff6e0);
+      border-radius: 60px;
+      padding: 6px 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
       margin-bottom: 20px;
     }
     .hero-text h1 {
@@ -343,15 +343,70 @@
       letter-spacing: 0.5px;
     }
 
-    .comp-badge {
-      background: linear-gradient(95deg, #fef9e3, #fff6e0);
-      border-radius: 60px;
-      padding: 6px 20px;
+    /* Instagram Section Styles */
+    .instagram-section {
+      background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+      border-radius: 48px;
+      padding: 48px 32px;
+      text-align: center;
+      border: 1px solid #f0d4ff;
+    }
+    .instagram-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .instagram-icon {
+      font-size: 4rem;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+    .instagram-section h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .instagram-section p {
+      color: #4b5563;
+      margin-bottom: 28px;
+      font-size: 1.1rem;
+    }
+    .instagram-btn {
       display: inline-flex;
       align-items: center;
       gap: 12px;
+      background: linear-gradient(135deg, #833ab4, #c13584, #e1306c, #fd1d1d);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 60px;
+      text-decoration: none;
       font-weight: 700;
-      margin-bottom: 20px;
+      font-size: 1.1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(225, 48, 108, 0.3);
+    }
+    .instagram-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(225, 48, 108, 0.4);
+    }
+    .instagram-btn:active {
+      transform: translateY(0);
+    }
+    .instagram-handle {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+    .instagram-handle a {
+      color: #e1306c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .instagram-handle a:hover {
+      text-decoration: underline;
     }
 
     footer {
@@ -397,6 +452,9 @@
       .team-card {
         width: 220px;
       }
+      .instagram-section h3 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -416,6 +474,7 @@
       <a href="#robot">Robot</a>
       <a href="#team">Team</a>
       <a href="#competition" class="btn-outline">NLFRC 2026</a>
+      <a href="#instagram">Instagram</a>
     </div>
   </div>
 </header>
@@ -569,6 +628,25 @@
       </div>
     </div>
   </div>
+
+  <!-- Instagram Follow Section -->
+  <div class="section" id="instagram">
+    <div class="container">
+      <div class="instagram-section">
+        <div class="instagram-content">
+          <div class="instagram-icon">📸</div>
+          <h3>Follow our journey on Instagram</h3>
+          <p>Stay updated with our latest progress, behind-the-scenes content, and competition highlights. Join our community and be part of the U4X story!</p>
+          <a href="https://www.instagram.com/u_4_.x?igsh=MWFiOWRsZWV4cXoybA==" target="_blank" class="instagram-btn">
+            <span>📷</span> Follow @u_4_.x
+          </a>
+          <div class="instagram-handle">
+            <span>✨ </span><a href="https://www.instagram.com/u_4_.x?igsh=MWFiOWRsZWV4cXoybA==" target="_blank">@u_4_.x</a><span> ✨</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
 
 <footer>
@@ -580,6 +658,7 @@
     <div style="text-align: right;">
       <p style="font-weight: 500;">"From code to concrete track — unity drives innovation"</p>
       <p style="font-size: 0.75rem; margin-top: 8px;">Abdalrhman · Haitham · Rashed · Gaith</p>
+      <p style="font-size: 0.7rem; margin-top: 6px;">📷 Follow us on Instagram: @u_4_.x</p>
     </div>
   </div>
 </footer>
@@ -589,13 +668,20 @@
     const links = document.querySelectorAll('.nav-links a');
     for (const link of links) {
       link.addEventListener('click', function(e) {
-        if(this.hash !== "") {
+        if(this.hash !== "" && this.hash !== "#instagram") {
           e.preventDefault();
           const hash = this.hash;
           const target = document.querySelector(hash);
           if(target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             history.pushState(null, null, hash);
+          }
+        } else if(this.hash === "#instagram") {
+          e.preventDefault();
+          const target = document.querySelector("#instagram");
+          if(target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.pushState(null, null, "#instagram");
           }
         }
       });
